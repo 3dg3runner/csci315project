@@ -1,8 +1,8 @@
 /*
  * Program: CSCI 315 - Library Management System - Group Project
  * Purpose: This program will implement a system to manage book records with features like searching, adding, and deleting books.
- * Developer for this part: nathalie baladejo-reynosa
- * Creation Date: April 12, 2025
+ * Developers: Evan Palermo, Jaden Abbott, Gabriela Hasier, Samuel Johnson, Gabriel Kennedy, and nathalie baladejo-reynosa
+ * Creation Date: April 15, 2025
  */
  #include <iostream> // Include necessary libraries
  #include <iomanip>
@@ -12,7 +12,7 @@
  int main()
  {
      // Declare variables
-    /*
+    /* Pseudocode from Gabriela
     MENU
  
  REPEAT

@@ -80,7 +80,7 @@ UNTIL FALSE
 // Start of nathalie's code
 // Declare variables
 int choice;
-bookType library;
+LibrarySystem library;
 int bookID;
 string title, author;
 bool result;
@@ -131,7 +131,7 @@ while (true)
     case 2:
     cout << "Enter book ID: ";
     cin >> bookID;
-    result = library.SearchBook(bookID);
+    result = library.searchBook(bookID);
     if (result == true)
         cout << "The book " << " is in the list."  << endl;
     else
@@ -147,7 +147,7 @@ while (true)
     // Case 4 - Display All Books 
     case 4:
         cout << "Printing all books..." << endl;
-        library.DisplayBooks();
+        library.displayBooks();
         break;
     case 0:
         cout << "Bye-bye for now!" << endl

@@ -84,6 +84,7 @@ bookType library;
 int bookID;
 string title, author;
 bool result;
+    
 
 // While loop
 while (true)
@@ -99,6 +100,16 @@ while (true)
         "0 : Exit\n";
     cout << "Enter a choice please: ";
     cin >> choice;
+
+    // Start of Samuel's code
+    // Error Check
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please try again." << endl;
+            continue;
+        } // End of Samuel's code
+
 
     // Begin switch statement
     switch (choice)

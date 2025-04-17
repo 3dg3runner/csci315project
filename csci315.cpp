@@ -5,8 +5,43 @@
  * Creation Date: April 12, 2025
  */
 #include <iostream> // Include necessary libraries
-#include <iomanip>
+#include <limits>
 using namespace std; // Use namespace std
+
+// Start of Samuel's code
+// Structure to represent a book
+struct Book {
+    int bookID;
+    string title;
+    string author;
+    Book* next; // Pointer to the next book in the linked list
+};
+
+
+// Class for Library System
+class LibrarySystem {
+private:
+    Book* head; // Head pointer for the linked list
+public:
+    LibrarySystem() : head(nullptr) {}
+
+
+    // Function to display all books
+    void displayBooks() {
+        Book* current = head;
+        if (current == nullptr) {
+            cout << "No books in the library." << endl;
+            return;
+        }
+        while (current != nullptr) {
+            cout << "Book ID: " << current->bookID
+                 << ", Title: " << current->title
+                 << ", Author: " << current->author << endl;
+            current = current->next;
+        }
+    }
+}; // End of Samuel's code
+
 
 // Program main
 int main()

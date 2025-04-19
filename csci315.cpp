@@ -1,8 +1,9 @@
 /*
  * Program: CSCI 315 - Library Management System - Group Project
  * Purpose: This program will implement a system to manage book records with features like searching, adding, and deleting books.
- * Developer for this part: nathalie baladejo-reynosa
+ * Developers for this part: Evan Palermo (where and freeShelfSpace members), nathalie baladejo-reynosa and Samuel Johnson
  * Creation Date: April 12, 2025
+ * Updated: April 18, 2025
  */
 #include <iostream> // Include necessary libraries
 #include <limits>
@@ -19,11 +20,11 @@ struct Book {
 
 
 // Class for Library System
-class LibrarySystem {
+class librarySystem {
 private:
     Book* head; // Head pointer for the linked list
 public:
-    LibrarySystem() : head(nullptr) {}
+    librarySystem() : head(nullptr) {}
 
 
     // Function to display all books
@@ -80,7 +81,7 @@ UNTIL FALSE
 // Start of nathalie's code
 // Declare variables
 int choice;
-LibrarySystem library;
+librarySystem library;
 int bookID;
 string title, author;
 bool result;
@@ -94,9 +95,10 @@ while (true)
     cout << "\nWelcome to Library Management System\n"
         "Select a choice from the menu below\n"
         "1 : Add Book\n"
-        "2 : Search Book\n"
+        "2 : Search Book and Where in Library?\n"
         "3 : Delete Book\n"
         "4 : Display All Books\n"
+        "5 : Remaining Book Space\n"
         "0 : Exit\n";
     cout << "Enter a choice please: ";
     cin >> choice;
@@ -127,15 +129,19 @@ while (true)
         cout << "Book added!\n";
         break;
     
-    // Case 2 - Search Book
+    // Case 2 - Search Book and Where in Library?
     case 2:
-    cout << "Enter book ID: ";
-    cin >> bookID;
-    result = library.searchBook(bookID);
-    if (result == true)
-        cout << "The book " << " is in the list."  << endl;
-    else
-        cout << "The book " << " is not in the list."  << endl;
+        cout << "Enter book ID: ";
+        cin >> bookID;
+        result = library.searchBook(bookID);
+        if (result == true)
+            cout << "The book " << " is in the library."  << endl;
+        else
+            cout << "The book " << " is not in the library."  << endl;
+        cout << "Provide book title to find shelf and row in the library: ";
+        cin.ignore();
+        getline(cin, title);
+        library.where(title);
     // Case 3 - Delete Book
     case 3:
         cout << "Enter book ID: ";
@@ -143,11 +149,14 @@ while (true)
         library.deleteBook(bookID);
         cout << "Book deleted!\n";
         break;
-
     // Case 4 - Display All Books 
     case 4:
         cout << "Printing all books..." << endl;
         library.displayBooks();
+        break;
+    // Case 5 - Remaining Book Space
+    case 5:
+        library.freeShelfSpace();
         break;
     case 0:
         cout << "Bye-bye for now!" << endl

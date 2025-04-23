@@ -1,9 +1,8 @@
 /*
  * Program: CSCI 315 - Library Management System - Group Project
  * Purpose: This program will implement a system to manage book records with features like searching, adding, and deleting books.
- * Developers for this part: Evan Palermo, nathalie baladejo-reynosa and Samuel Johnson
+ * Developers for this part: nathalie baladejo-reynosa and Samuel Johnson
  * Creation Date: April 12, 2025
- * Updated: April 22, 2025
  */
 #include <iostream>
 #include <string>
@@ -130,7 +129,7 @@ while (true)
         getline(cin, title);
         cout << "Enter author: ";
         getline(cin, author);
-        library.addBook(bookID, title, author);
+        librarySystem.addBook(bookID, title, author);
         cout << "Book added!\n";
         break;
     
@@ -138,7 +137,7 @@ while (true)
     case 2:
         cout << "Enter book ID: ";
         cin >> bookID;
-        result = library.searchBook(bookID);
+        result = librarySystem.searchBook(bookID);
         if (result == true)
             cout << "The book " << " is in the library."  << endl;
         else
@@ -146,36 +145,36 @@ while (true)
         cout << "Provide book title to find shelf and row in the library: ";
         cin.ignore();
         getline(cin, title);
-        library.where(title);
+        librarySystem.where(title);
     // Case 3 - Delete Book
     case 3:
         cout << "Enter book ID: ";
         cin >> bookID;
-        library.deleteBook(bookID);
+        librarySystem.deleteBook(bookID);
         cout << "Book deleted!\n";
         break;
     // Case 4 - Display All Books 
     case 4:
         cout << "Printing all books..." << endl;
-        library.displayBooks();
+        librarySystem.displayBooks();
         break;
     // Case 5 - Remaining Book Space
     case 5:
-        library.freeShelfSpace();
+        librarySystem.freeShelfSpace();
         break;
     case 6:
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
         cout << "What file would you like to create this library from? ";
         getline(cin, filePath);
         cin.ignore();
-        library.fileRead(filePath); // Evan's code
+        librarySystem.fileRead(filePath); // Evan's code
         break;
     case 7:
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
         cout << "What file would you like to print this library from? ";
         getline(cin, filePath);
         cin.ignore();
-        library.filePrint(filePath); // Evan's code
+        librarySystem.filePrint(filePath); // Evan's code
         break;
     case 0:
         cout << "Bye-bye for now!" << endl

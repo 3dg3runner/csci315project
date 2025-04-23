@@ -1,12 +1,14 @@
 /*
  * Program: CSCI 315 - Library Management System - Group Project
  * Purpose: This program will implement a system to manage book records with features like searching, adding, and deleting books.
- * Developers for this part: Evan Palermo (where and freeShelfSpace members), nathalie baladejo-reynosa and Samuel Johnson
+ * Developers for this part: Evan Palermo, nathalie baladejo-reynosa and Samuel Johnson
  * Creation Date: April 12, 2025
- * Updated: April 18, 2025
+ * Updated: April 22, 2025
  */
-#include <iostream> // Include necessary libraries
-#include <limits>
+#include <iostream>
+#include <string>
+#include <fstream>
+
 using namespace std; // Use namespace std
 
 // Start of Samuel's code
@@ -85,6 +87,7 @@ librarySystem library;
 int bookID;
 string title, author;
 bool result;
+string filePath;
     
 
 // While loop
@@ -99,6 +102,8 @@ while (true)
         "3 : Delete Book\n"
         "4 : Display All Books\n"
         "5 : Remaining Book Space\n"
+        "6 : Create library from text file\n"
+        "7 : Print library from text file\n"
         "0 : Exit\n";
     cout << "Enter a choice please: ";
     cin >> choice;
@@ -157,6 +162,20 @@ while (true)
     // Case 5 - Remaining Book Space
     case 5:
         library.freeShelfSpace();
+        break;
+    case 6:
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
+        cout << "What file would you like to create this library from? ";
+        getline(cin, filePath);
+        cin.ignore();
+        library.fileRead(filePath);
+        break;
+    case 7:
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
+        cout << "What file would you like to print this library from? ";
+        getline(cin, filePath);
+        cin.ignore();
+        library.filePrint(filePath);
         break;
     case 0:
         cout << "Bye-bye for now!" << endl

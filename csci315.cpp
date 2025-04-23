@@ -168,14 +168,14 @@ while (true)
         cout << "What file would you like to create this library from? ";
         getline(cin, filePath);
         cin.ignore();
-        library.fileRead(filePath);
+        library.fileRead(filePath); // Evan's code
         break;
     case 7:
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
         cout << "What file would you like to print this library from? ";
         getline(cin, filePath);
         cin.ignore();
-        library.filePrint(filePath);
+        library.filePrint(filePath); // Evan's code
         break;
     case 0:
         cout << "Bye-bye for now!" << endl

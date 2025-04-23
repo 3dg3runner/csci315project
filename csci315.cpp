@@ -129,7 +129,7 @@ while (true)
         getline(cin, title);
         cout << "Enter author: ";
         getline(cin, author);
-        librarySystem.addBook(bookID, title, author);
+        library.addBook(bookID, title, author);
         cout << "Book added!\n";
         break;
     
@@ -137,7 +137,7 @@ while (true)
     case 2:
         cout << "Enter book ID: ";
         cin >> bookID;
-        result = librarySystem.searchBook(bookID);
+        result = library.searchBook(bookID);
         if (result == true)
             cout << "The book " << " is in the library."  << endl;
         else
@@ -145,36 +145,36 @@ while (true)
         cout << "Provide book title to find shelf and row in the library: ";
         cin.ignore();
         getline(cin, title);
-        librarySystem.where(title);
+        library.where(title);
     // Case 3 - Delete Book
     case 3:
         cout << "Enter book ID: ";
         cin >> bookID;
-        librarySystem.deleteBook(bookID);
+        library.deleteBook(bookID);
         cout << "Book deleted!\n";
         break;
     // Case 4 - Display All Books 
     case 4:
         cout << "Printing all books..." << endl;
-        librarySystem.displayBooks();
+        library.displayBooks();
         break;
     // Case 5 - Remaining Book Space
     case 5:
-        librarySystem.freeShelfSpace();
+        library.freeShelfSpace();
         break;
     case 6:
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
         cout << "What file would you like to create this library from? ";
         getline(cin, filePath);
         cin.ignore();
-        librarySystem.fileRead(filePath); // Evan's code
+        library.fileRead(filePath); // Evan's code
         break;
     case 7:
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
         cout << "What file would you like to print this library from? ";
         getline(cin, filePath);
         cin.ignore();
-        librarySystem.filePrint(filePath); // Evan's code
+        library.filePrint(filePath); // Evan's code
         break;
     case 0:
         cout << "Bye-bye for now!" << endl

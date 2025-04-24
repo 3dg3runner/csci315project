@@ -228,7 +228,7 @@ int main()
         case 0:
             cout << "Bye-bye for now!" << endl
                  << endl;
-            exit2 = true;
+            exit1 = true;
             break;
         // Let user know it's invalid input
         default:

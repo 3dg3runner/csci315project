@@ -1,8 +1,9 @@
 /*
  * Program: CSCI 315 - Library Management System - Group Project
  * Purpose: This program will implement a system to manage book records with features like searching, adding, and deleting books.
- * Developers for this part: nathalie baladejo-reynosa and Samuel Johnson
+ * Developers for this part:  Evan Palermo, nathalie baladejo-reynosa and Samuel Johnson
  * Creation Date: April 12, 2025
+ * Updated date: April 23, 2025
  */
 #include <iostream>
 #include <string>
@@ -10,32 +11,34 @@
 
 using namespace std; // Use namespace std
 
-// Start of Samuel's code
+// Modified by Evan Palermo - Start of Samuel's code
 // Structure to represent a book
-struct Book {
-    int bookID;
+struct Book
+{
     string title;
     string author;
-    Book* next; // Pointer to the next book in the linked list
+    string bookID:
 };
 
-
 // Class for Library System
-class librarySystem {
+class librarySystem
+{
 private:
-    Book* head; // Head pointer for the linked list
+    Book *head; // Head pointer for the linked list
 public:
     librarySystem() : head(nullptr) {}
 
-
     // Function to display all books
-    void displayBooks() {
-        Book* current = head;
-        if (current == nullptr) {
+    void displayBooks()
+    {
+        Book *current = head;
+        if (current == nullptr)
+        {
             cout << "No books in the library." << endl;
             return;
         }
-        while (current != nullptr) {
+        while (current != nullptr)
+        {
             cout << "Book ID: " << current->bookID
                  << ", Title: " << current->title
                  << ", Author: " << current->author << endl;
@@ -44,149 +47,189 @@ public:
     }
 }; // End of Samuel's code
 
-
 // Program main
 int main()
 {
     // Declare variables
-   /*
-   MENU
+    /*
+    MENU
 
-REPEAT
-    DISPLAY "1. Add Book"
-    DISPLAY "2. Search Book"
-    DISPLAY "3. Delete Book"
-    DISPLAY "4. Display All Books"
-    DISPLAY "5. Exit"
-    READ choice
+ REPEAT
+     DISPLAY "1. Add Book"
+     DISPLAY "2. Search Book"
+     DISPLAY "3. Delete Book"
+     DISPLAY "4. Display All Books"
+     DISPLAY "5. Exit"
+     READ choice
 
-    SWITCH choice
-        CASE 1:
-            READ bookID, title, author
-            Library.AddBook(bookID, title, author)
-        CASE 2:
-            READ bookID
-            result = Library.SearchBook(bookID)
-            PRINT result
-        CASE 3:
-            READ bookID
-            Library.DeleteBook(bookID)
-        CASE 4:
-            Library.DisplayBooks()
-        CASE 5:
-            EXIT
-    END SWITCH
-UNTIL FALSE
-*/
+     SWITCH choice
+         CASE 1:
+             READ bookID, title, author
+             Library.AddBook(bookID, title, author)
+         CASE 2:
+             READ bookID
+             result = Library.SearchBook(bookID)
+             PRINT result
+         CASE 3:
+             READ bookID
+             Library.DeleteBook(bookID)
+         CASE 4:
+             Library.DisplayBooks()
+         CASE 5:
+             EXIT
+     END SWITCH
+ UNTIL FALSE
+ */
 
-// Start of nathalie's code
-// Declare variables
-int choice;
-librarySystem library;
-int bookID;
-string title, author;
-bool result;
-string filePath;
-    
+    // Start of Evan's code
+    const string PASSWORD = "CSCI-315";
+    const int BOOKLIMIT = 3;
 
-// While loop
-while (true)
-{
-    // Prompt user for input
+    // Start of nathalie's code
+    // Declare variables
+    int choice;
+    librarySystem library;
+    int bookID;
+    string title, author;
+    bool result;
+    string filePath;
+    string receiptFilePath;
+    bool exit1 = false, exit2 = false; // Evan's code
+    string passwd;                     // Evan's code
 
-    cout << "\nWelcome to Library Management System\n"
-        "Select a choice from the menu below\n"
-        "1 : Add Book\n"
-        "2 : Search Book and Where in Library?\n"
-        "3 : Delete Book\n"
-        "4 : Display All Books\n"
-        "5 : Remaining Book Space\n"
-        "6 : Create library from text file\n"
-        "7 : Print library from text file\n"
+    // Start of Evan's code
+    // Have a constant file paths
+    filePath = "library.txt";
+    receiptFilePath = "receipt.txt";
+    // End of Evan's code
+
+    // Do while loop
+    do
+    {
+        // Prompt user for input
+
+        cout << "\nWelcome to Library Management System\n" // Start of Evan's code
+                "Select a choice from the menu below\n"
+                "1 : Check out Book\n"
+                "2 : Return Book\n"
+                "3 : Search Book\n"
+                "4 : Display All Books\n"
+                "5 : Managerial Settings\n";
         "0 : Exit\n";
-    cout << "Enter a choice please: ";
-    cin >> choice;
+        cout << "Enter a choice please: ";
+        cin >> choice; // End of Evan's code
 
-    // Start of Samuel's code
-    // Error Check
-        if (cin.fail()) {
+        // Start of Samuel's code
+        // Error Check
+        if (cin.fail())
+        {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid input. Please try again." << endl;
             continue;
         } // End of Samuel's code
 
+        // Begin switch statement
+        switch (choice)
+        {
+        // Case 1 - Check out Book
+        case 1:
+            cout << "Enter book title: ";
+            cin.ignore();
+            getline(cin, title);
+            library.deleteBook(title);
+            receiptPrint(book a[BOOKLIMIT]); // Evan's code
+            break;
+        // Case 2 - Return a Book
+        case 2:
+            cout << "Enter book ID: ";
+            cin >> bookID;
+            cin.ignore();
+            cout << "Enter title: ";
+            getline(cin, title);
+            cout << "Enter author: ";
+            getline(cin, author);
+            library.addBook(bookID, title, author);
+        // Case 3 - Search a Book
+        case 3:
+            cout << "Enter book title: ";
+            cin.ignore();
+            getline(cin, title);
+            result = library.searchBook(title);
+            if (result == true)
+                cout << "The book " << " is in the library." << endl;
+            else
+                cout << "The book " << " is not in the library." << endl;
+            library.where(title);
+            break;
+        // Case 4 - Display All Books
+        case 4:
+            cout << "Printing all books..." << endl;
+            library.displayBooks();
+            break;
+        // Case 5 - Managerial Settings // Start of Evan's code
+        case 5:
+            exit2 = false;
+            cout << "Password: ";
+            cin >> passwd;
+            if (passwd != PASSWORD)
+            {
+                cout << "Entry denied. Wrong password!";
+                return 0;
+            } // End of Evan's code
+            do
+            {
+                // Prompt user for input
 
-    // Begin switch statement
-    switch (choice)
-    {
-    // Case 1 - Add Book 
-    case 1:
-        cout << "Enter book ID: ";
-        cin >> bookID;
-        cin.ignore();
-        cout << "Enter title: ";
-        getline(cin, title);
-        cout << "Enter author: ";
-        getline(cin, author);
-        library.addBook(bookID, title, author);
-        cout << "Book added!\n";
-        break;
-    
-    // Case 2 - Search Book and Where in Library?
-    case 2:
-        cout << "Enter book ID: ";
-        cin >> bookID;
-        result = library.searchBook(bookID);
-        if (result == true)
-            cout << "The book " << " is in the library."  << endl;
-        else
-            cout << "The book " << " is not in the library."  << endl;
-        cout << "Provide book title to find shelf and row in the library: ";
-        cin.ignore();
-        getline(cin, title);
-        library.where(title);
-    // Case 3 - Delete Book
-    case 3:
-        cout << "Enter book ID: ";
-        cin >> bookID;
-        library.deleteBook(bookID);
-        cout << "Book deleted!\n";
-        break;
-    // Case 4 - Display All Books 
-    case 4:
-        cout << "Printing all books..." << endl;
-        library.displayBooks();
-        break;
-    // Case 5 - Remaining Book Space
-    case 5:
-        library.freeShelfSpace();
-        break;
-    case 6:
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
-        cout << "What file would you like to create this library from? ";
-        getline(cin, filePath);
-        cin.ignore();
-        library.fileRead(filePath); // Evan's code
-        break;
-    case 7:
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
-        cout << "What file would you like to print this library from? ";
-        getline(cin, filePath);
-        cin.ignore();
-        library.filePrint(filePath); // Evan's code
-        break;
-    case 0:
-        cout << "Bye-bye for now!" << endl
-             << endl;
-        return 0;
-        break;
-    // Let user know it's invalid input
-    default:
-        cout << "That is not a valid input, sorry!" << endl;
-    }
+                cout << "\nWelcome to Library Management System\n"
+                        "Select a choice from the menu below\n"
+                        "1 : Check out Book\n"
+                        "2 : Return Book\n"
+                        "3 : Search Book\n"
+                        "4 : Display All Books\n"
+                        "5 : Managerial Settings\n";
+                "0 : Exit\n";
+                cout << "Enter a choice please: ";
+                cin >> choice;
 
-}
+                switch (choice)
+                {
+                // Case 1 - Remaining Book Space
+                case 1:
+                    library.freeShelfSpace();
+                    break;
+                // Case 2 - Create library from text file
+                case 2:
+                    library.fileRead(filePath); // Evan's code
+                    break;
+                // Case 3 - Print library from text file
+                case 3:
+                    library.filePrint(filePath); // Evan's code
+                    break;
 
-    return 0; // Indicate successful program termination
-}// End of nathalie's code
+                case 0:
+                    cout << "Bye-bye for now!" << endl
+                         << endl;
+                    return 0;
+                    break;
+                // Let user know it's invalid input
+                default:
+                    cout << "That is not a valid input, sorry!" << endl;
+                    break;
+                }
+            } while (!exit2);
+        case 0:
+            cout << "Bye-bye for now!" << endl
+                 << endl;
+            return 0;
+            break;
+        // Let user know it's invalid input
+        default:
+            cout << "That is not a valid input, sorry!" << endl;
+            break;
+        }
+        while (!exit1)
+            ; //
+
+        return 0; // Indicate successful program termination
+    } // End of nathalie's code

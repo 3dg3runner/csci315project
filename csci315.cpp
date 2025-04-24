@@ -3,7 +3,7 @@
  * Purpose: This program will implement a system to manage book records with features like searching, adding, and deleting books.
  * Developers for this part:  Evan Palermo, nathalie baladejo-reynosa and Samuel Johnson
  * Creation Date: April 12, 2025
- * Updated date: April 23, 2025
+ * Updated date: April 24, 2025
  */
 #include <iostream>
 #include <string>
@@ -190,36 +190,35 @@ int main()
             {
                 // Prompt user for input
 
-                cout << "\nWelcome to Library Management System\n"
+                cout << "\nManagerial Settings\n"
                         "Select a choice from the menu below\n"
-                        "1 : Check out Book\n"
-                        "2 : Return Book\n"
-                        "3 : Search Book\n"
-                        "4 : Display All Books\n"
-                        "5 : Managerial Settings\n";
-                "0 : Exit\n";
+                        "1 : Add Book\n"
+                        "2 : Delete Book\n"
+                        "3 : Remaining Shelf Space\n"
+                        "0 : Exit\n";
                 cout << "Enter a choice please: ";
                 cin >> choice;
 
                 switch (choice)
                 {
-                // Case 1 - Remaining Book Space
+                // Case 1 - Read/Create library from text file
                 case 1:
-                    library.freeShelfSpace();
-                    break;
-                // Case 2 - Create library from text file
-                case 2:
                     library.fileRead(filePath); // Evan's code
                     break;
-                // Case 3 - Print library from text file
-                case 3:
+                // Case 2 - Print library from text file
+                case 2:
                     library.filePrint(filePath); // Evan's code
+                    break;
+                 // Case 3 - Remaining Book Space
+                case 3:
+                    library.freeShelfSpace();
                     break;
 
                 case 0:
                     cout << "Bye-bye for now!" << endl
                          << endl;
-                    return 0;
+                    exit1 = true;
+                    exit2 = true;
                     break;
                 // Let user know it's invalid input
                 default:

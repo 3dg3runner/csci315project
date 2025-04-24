@@ -11,14 +11,23 @@
 
 using namespace std; // Use namespace std
 
+// Start of Samuel's code
+// Structure to represent a book
+struct Book {
+    int bookID;
+    string title;
+    string author;
+    Book* next; // Pointer to the next book in the linked list
+};
 // Modified by Evan Palermo - Start of Samuel's code
 // Structure to represent a book
-struct Book
+struct book
 {
     string title;
     string author;
     string bookID:
 };
+
 
 // Class for Library System
 class librarySystem

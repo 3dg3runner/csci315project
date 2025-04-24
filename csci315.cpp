@@ -217,7 +217,6 @@ int main()
                 case 0:
                     cout << "Bye-bye for now!" << endl
                          << endl;
-                    exit1 = true;
                     exit2 = true;
                     break;
                 // Let user know it's invalid input
@@ -229,15 +228,14 @@ int main()
         case 0:
             cout << "Bye-bye for now!" << endl
                  << endl;
-            return 0;
+            exit2 = true;
             break;
         // Let user know it's invalid input
         default:
             cout << "That is not a valid input, sorry!" << endl;
             break;
         }
-        while (!exit1)
-            ; //
+        while (!exit1); //
 
         return 0; // Indicate successful program termination
     } // End of nathalie's code

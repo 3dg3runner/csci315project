@@ -28,6 +28,30 @@ struct book
     string bookID:
 };
 
+inline bool operator==(const book& a, const book& b)
+{
+    return a.title == b.title;
+}
+
+inline bool operator>(const book& a, const book& b)
+{
+    return a.title > b.title;
+}
+
+inline bool operator>=(const book& a, const book& b)
+{
+    return a.title >= b.title;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const book& b)
+{
+    // prints: Title by Author (ID: bookID)
+    return os 
+        << b.title 
+        << " by "    << b.author 
+        << " (ID: "  << b.bookID 
+        << ")";
+}
 
 // Class for Library System
 class librarySystem
